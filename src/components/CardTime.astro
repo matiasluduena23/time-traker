@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+
+import img from '/images/icon-work.svg';
+const imgBack = "background-image: url('/images/icon-work.svg');";
+import imgEllipsis from '../assets/icon-ellipsis.svg';
+---
+
+<div class="card">
+    <div class="card-img" style={imgBack}></div>
+    <div class="card-body">
+        <p class="title">Work</p>
+        <div class="ellipsis">
+            <img src={imgEllipsis.src} alt="opction ellipsis" />
+        </div>
+        <div class="info">
+            <h2 class="time">10Hrs</h2>
+            <p>Last Week - 36hrs</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        color: var(--pale-blue);
+        border-radius: 15px;
+    }
+
+    .card-img {
+        background-color: var(--light-red-work);
+        height: 40px;
+        position: relative;
+        z-index: -1;
+        border-radius: 15px 15px 0 0;
+        background-repeat: no-repeat;
+        background-size: 55px;
+        background-position: right 15px top -7px;
+    }
+
+    .card-body {
+        background-color: var(--dark-blue);
+        padding: 1rem;
+        border-radius: 15px;
+        margin-top: -12px;
+    }
+</style>

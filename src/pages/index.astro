@@ -1,0 +1,31 @@
+---
+import '../style/global.css';
+import CardProfile from '../components/CardProfile.astro';
+import CardTime from '../components/CardTime.astro';
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Astro</title>
+    </head>
+    <body>
+        <main>
+            <CardProfile />
+            <CardTime />
+        </main>
+    </body>
+
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            background-color: var(--very-dark-blue);
+            z-index: 10;
+        }
+    </style>
+</html>

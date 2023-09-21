@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import imgProfile from '../assets/image-jeremy.png';
+---
+
+<div class="card">
+    <div class="card-head">
+        <div class="card-img">
+            <Image src={imgProfile} alt="image profile" />
+        </div>
+        <div class="card-name">
+            <p>Report for</p>
+            <h1>Jeremy Robson</h1>
+        </div>
+    </div>
+    <div class="card-body">
+        <a href="#">Daily</a>
+        <a href="#">Weekly</a>
+        <a href="#">Monthly</a>
+    </div>
+</div>
+
+<style>
+    .card {
+        background-color: var(--dark-blue);
+        color: var(--pale-blue);
+        border-radius: 15px;
+        max-width: 350px;
+    }
+
+    .card-head {
+        background-color: var(--blue);
+        padding: 1.5rem;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .card-img img {
+        width: 70px;
+        height: 70px;
+        border: 3px solid var(--pale-blue);
+        border-radius: 50%;
+    }
+
+    .card-name h1 {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+
+    .card-body {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .card {
+            max-width: 300px;
+        }
+        .card-head,
+        .card-body {
+            flex-direction: column;
+        }
+
+        .card-head {
+            align-items: start;
+        }
+
+        .card-name h1 {
+            font-size: 2.3rem;
+        }
+    }
+</style>
