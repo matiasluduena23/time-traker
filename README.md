@@ -2,7 +2,7 @@
 
 ### Screenshot
 
-![](/public/design/screenshot.jpg)
+![](/public/design/screenshot.jpeg)
 
 ### Built with
 

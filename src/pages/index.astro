@@ -2,6 +2,8 @@
 import '../style/global.css';
 import CardProfile from '../components/CardProfile.astro';
 import CardTime from '../components/CardTime.astro';
+
+import json from '../data/data.json';
 ---
 
 <html lang="en">
@@ -10,22 +12,59 @@ import CardTime from '../components/CardTime.astro';
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
+        <title>Time Traker</title>
     </head>
     <body>
         <main>
             <CardProfile />
-            <CardTime />
+
+            {
+                json.map((data) => (
+                    <CardTime
+                        title={data.title}
+                        bgColor={data.color}
+                        currentTime={data.timeframes.weekly.current}
+                        lastTime={data.timeframes.weekly.previous}
+                        image={data.image}
+                    />
+                ))
+            }
         </main>
+        <script src="../scripts/main.js"></script>
     </body>
 
-    <style>
+    <style is:global>
         main {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(1fr);
             gap: 2rem;
             background-color: var(--very-dark-blue);
             z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            main {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+            }
+
+            main div:first-child {
+                grid-row: 1 / span 2;
+            }
+        }
+
+        @media (min-width: 992px) {
+            main {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            main {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+            }
         }
     </style>
 </html>

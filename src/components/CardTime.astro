@@ -1,40 +1,45 @@
 ---
 import { Image } from 'astro:assets';
-
-import img from '/images/icon-work.svg';
-const imgBack = "background-image: url('/images/icon-work.svg');";
 import imgEllipsis from '../assets/icon-ellipsis.svg';
+
+const { title, bgColor, currentTime, lastTime, image } = Astro.props;
 ---
 
 <div class="card">
-    <div class="card-img" style={imgBack}></div>
+    <div class="card-img" style=`background-image: url('${image.src}');`></div>
     <div class="card-body">
-        <p class="title">Work</p>
+        <p class="title">{title}</p>
         <div class="ellipsis">
-            <img src={imgEllipsis.src} alt="opction ellipsis" />
+            <Image src={imgEllipsis} alt="opction ellipsis" />
         </div>
         <div class="info">
-            <h2 class="time">10Hrs</h2>
-            <p>Last Week - 36hrs</p>
+            <h2 class="hour">
+                <span class="current-hour">{currentTime}</span>hrs
+            </h2>
+            <p>
+                Last
+                <span class="time">Week</span> -
+                <span class="previous-hour">{lastTime}</span>
+                 hrs
+            </p>
         </div>
     </div>
 </div>
 
-<style>
+<style define:vars={{ bgColor }}>
     .card {
         color: var(--pale-blue);
         border-radius: 15px;
     }
 
     .card-img {
-        background-color: var(--light-red-work);
+        background-color: var(--bgColor);
         height: 40px;
-        position: relative;
         z-index: -1;
         border-radius: 15px 15px 0 0;
         background-repeat: no-repeat;
-        background-size: 55px;
-        background-position: right 15px top -7px;
+        background-size: 43px;
+        background-position: right 15px top -4px;
     }
 
     .card-body {
@@ -42,5 +47,52 @@ import imgEllipsis from '../assets/icon-ellipsis.svg';
         padding: 1rem;
         border-radius: 15px;
         margin-top: -12px;
+        position: relative;
+    }
+
+    .card-body:hover {
+        background-color: hsl(235, 34%, 29%);
+        cursor: pointer;
+    }
+
+    .title {
+        position: absolute;
+        left: 1.5rem;
+        top: 1rem;
+        font-weight: 500;
+        color: white;
+    }
+
+    .ellipsis {
+        position: absolute;
+        right: 1.5rem;
+        top: 1rem;
+    }
+
+    .info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem 0.5rem 0.5rem;
+    }
+
+    .hour {
+        font-weight: 300;
+        color: white;
+    }
+
+    @media (min-width: 768px) {
+        .card {
+            max-width: 250px;
+        }
+        .info {
+            flex-direction: column;
+            align-items: start;
+            gap: 0.6rem;
+        }
+
+        .hour {
+            font-size: 4rem;
+        }
     }
 </style>
